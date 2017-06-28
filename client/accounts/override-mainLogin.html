@@ -1,0 +1,50 @@
+<template name="override-atPwdFormBtn">
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="checkbox icheck">
+        <label>
+          <input type="checkbox"> Recordar contraseña
+        </label>
+      </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-xs-4">
+      <button type="submit" class="at-btn  btn btn-primary {{submitDisabled}} btn-block btn-flat" id="at-btn">Iniciar</button>
+    </div>
+    <!-- /.col -->
+  </div>
+</template>
+
+<template name="override-atTitle">
+    <div class="card-header" data-background-color="purple">
+        <h4 class="title">Iniciar Sesion</h4>
+        <p class="category">Introdusca su usuario y contraseña</p>
+    </div>
+</template>
+
+<template name="override-atTextInput">
+    <div class="card-content">
+        <div class="row">
+              <div class="col-md-8  at-input form-group label-floating has-feedback {{#if isValidating}}validating{{/if}} {{#if hasError}}has-error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+                {{#if showLabels}}
+                <label class=" col-md-8 control-label" for="at-field-{{_id}}">
+                    {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
+                </label>
+                {{/if}}
+                <input type="{{type}}" id="at-field-{{_id}}" class=" col-md-8 form-control" name="at-field-{{_id}}" autocapitalize="none" autocorrect="off">
+                {{#if hasIcon}}
+                    <span class="{{iconClass}}"></span>
+                {{/if}}
+                {{#if hasError}}
+                <span>{{errorText}}</span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="override-atSignupLink">
+  <div class="at-signup-link">
+    nuevo usuario<a href="/crear_usuarios"> registrate</a>
+  </div>
+</template>

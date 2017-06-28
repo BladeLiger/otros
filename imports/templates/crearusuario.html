@@ -1,0 +1,94 @@
+<template name="CrearUsuarios">
+    <div class="row">
+        <div class="col-md-12">
+	                        <div class="card">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title ">Crear Un nuevo Usuario</h4>
+									<p class="category">Tenga cuidado con los campos de un nuevo usuario</p>
+	                            </div>
+	                            <div class="card-content">
+	                                <!--<form>
+	                                    <div class="row">
+	                                        <div class="col-md-5">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Nombres Completos</label>
+													<input type="text" name="nombres" id="nombres" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                        <div class="col-md-3">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Apellido Paterno</label>
+													<input type="text" name="apellidoP" id="apellidoP" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Apellido Materno</label>
+													<input type="text" name="apellidoM" id="apellidoM" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="row">
+	                                        <div class="col-md-6">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Correo Electronico</label>
+													<input type="email" name="email"  id="email" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                        <div class="col-md-6">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Numero de telefono</label>
+													<input type="text" name="cel" id="cel" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="row">
+	                                        <div class="col-md-6">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Direccion</label>
+													<input type="text" name="direccion" id="direccion" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+                                            <div class="col-md-6">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Password</label>
+													<input type="text" name="password" id="password" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="row">
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Nombre de usuario</label>
+													<input type="text" name="username" id="username" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label">Carrera</label>
+													<input type="text" name="carrera" id="carrera" class="form-control">
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating is-empty">
+													<label class="control-label"></label>
+													<select name="rol" class="form-control">
+                                                        <option value="admin">Administrador</option>
+                                                        <option value="facilitador">Facilitador</option>
+                                                        <option value="estudiante">Estudiante</option>
+													</select>
+												<span class="material-input"></span></div>
+	                                        </div>
+	                                    </div>
+	                                    <button type="submit" class="btn btn-primary pull-right">Crear Nuevo Usuario</button>
+	                                    <div class="clearfix"></div>
+	                                </form>-->
+                                    {{>atForm state='signUp'}}
+	                            </div>
+	                        </div>
+	                    </div>
+    </div>
+</template>
