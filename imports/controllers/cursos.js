@@ -30,7 +30,6 @@ if (Meteor.isClient) {
             var curso = crs.findOne({
                 sigla: appId
             });
-            console.log(curso)
             return curso;
         }
     });
@@ -86,5 +85,22 @@ if (Meteor.isClient) {
         reader.readAsArrayBuffer(file); //read the file as arraybuffer
         }*/
 
+    })
+
+    Template.ver_curso.helpers({
+        VerMaterialCurso: () => {
+            var appId = FlowRouter.getParam("sigla");
+            Meteor.call("materialesCurso",appId,{}, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    Session.set('MaterialesCursos', res);
+                }
+            });
+            console.log(Session.get('MaterialesCursos'))
+            return Session.get('MaterialesCursos');
+
+        }
     })
 }

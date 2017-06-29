@@ -35,14 +35,6 @@ Meteor.methods({
         ]
         return crs.aggregate(res);
   },
-  /*file_upload: function (fileInfo, fileData) {
-      console.log("received file " + fileInfo.name + " data: " + fileData);
-        FS.Utility.eachFile(event, function(fileData) {
-            ars.insert(file, function (err, fileObj) {
-                
-            });
-        });   
-  }  */
     saveFile: function(buffer,nombre,descripcion,CursoSigla){
         ars.insert({
             siglaMaterial:CursoSigla,
@@ -68,7 +60,44 @@ Meteor.methods({
                 console.log( "Update Successful");
             }
         });
-    }  
+    },
+
+    materialesCurso: function(sigla){
+        var query = [
+            {
+                $project: {
+                    nombre: 1,
+                    sigla: 1,
+                    archivos:1,
+                    createdAt: 1,
+                }
+            }, 
+            {
+                $group: {
+                    _id: "$nombre",
+                    nombre: {
+                        $last: "$nombre",
+                    },
+                    fecha: {
+                        $last: "$createdAt"
+                    },
+                    sigla: {
+                        $last: "$sigla"
+                    },
+                    archivos: {
+                        $last: "$archivos"
+                    },
+                    material: { $min: { $size: "$archivos" } }
+                }
+            },
+            {
+                $sort: {
+                    fecha:1
+                }
+            }
+        ]
+        return crs.aggregate(query);
+    }
 });
 
 Meteor.publish('crs', function() {

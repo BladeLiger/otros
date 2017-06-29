@@ -74,6 +74,35 @@
 		                                </div>
 									</div>
 	                            </div>
+								<div class="row">
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-6">
+													<h2>Materiales Del curso</h2>
+												</div>
+											</div>
+											<div class="row">
+											{{#each VerMaterialCurso}} 
+											        	<div class="col-md-3">
+															<div class="card">
+																<div class="card-header card-chart" data-background-color="green">
+																	<img src="images/curso.jpg">
+																</div>
+																<div class="card-content">
+																	<h4 class="title">{{nombre}}</h4>
+																	<p class="category">{{sigla}}</p>
+																</div>
+																<div class="card-footer">
+																	{{#each archivos}} 
+																		<a href="#" class="btn btn-primary">{{nombreMaterial}}</a>
+																	{{/each}}
+																</div>
+															</div>
+														</div>
+											{{/each}}
+											</div>
+										</div>
+								</div>
 	                        </div>
 	                    </div>
 	                </div>
