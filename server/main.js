@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/database/models.js';
 import {crs} from '../imports/database/models.js';
+import {msg} from '../imports/database/models.js';
 
 Meteor.startup(() => {
   // code to run on server at startup

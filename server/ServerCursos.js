@@ -174,11 +174,52 @@ Meteor.methods({
         return ars.aggregate(query);
 
     },
-    DecodeArchivos:function(archivo){
+    GetDecodeArchivos:function(sigla){
         //return archivo
         //base64data = new Buffer(data).toString('base64');
        // var base64 = bufferToBase64(data)
        // return base64data;
+       var archivo = []
+       var query = [
+            {
+                $project: {
+                    nombreMaterial: 1,
+                    siglaMaterial: 1,
+                    descripcionMaterial:1,
+                    data: 1,
+                }
+            }, 
+            {   
+                $match:{siglaMaterial :sigla}
+            },
+            {
+                $group: {
+                    _id: "$_id",
+                    nombre: {
+                        $last: "$nombreMaterial",
+                    },
+                    descripcion: {
+                        $last: "$descripcionMaterial"
+                    },
+                    sigla: {
+                        $last: "$siglaMaterial"
+                    },
+                    material:{
+                        $last:"$data"
+                    }
+                }
+            },
+            {
+                $sort: {
+                    sigla:1
+                }
+            }
+        ]
+        M =  ars.aggregate(query);
+        for(var i = 0; i<M.length;i++ ){
+            archivo.push(new Buffer(M[i]['material']['buffer']).toString('base64'))
+        }
+        return archivo
     }
 });
 

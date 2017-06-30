@@ -56,11 +56,10 @@ if (Meteor.isClient) {
             if (!archivos) return;
             for(var i=0; i<archivos.length  ;i++){
                 file = archivos[i]
+                console.log(file)
                 var reader = new FileReader(); //create a reader according to HTML5 File API
                 reader.onload = function(event){  
-                           
                 var buffer = new Uint8Array(reader.result) // convert to binary
-                console.log(buffer) 
                 Meteor.call('saveFile', buffer,nombre,descripcion,sigla);
                 }
                 reader.readAsArrayBuffer(file); //read the file as arraybuffer
@@ -89,20 +88,22 @@ if (Meteor.isClient) {
 
     })
 
-    Template.ver_curso.helpers({
-        VerMaterialCurso: () => {
-            var appId = FlowRouter.getParam("sigla");
-            Meteor.call("materialesXcurso",appId,{}, function(err, res) {
+    Template.ver_curso.onCreated(function () {
+        var appId = FlowRouter.getParam("sigla");
+        Meteor.call("GetDecodeArchivos",appId, function(err, res) {
                 if (err) {
                     console.log('Error: ' + err);
                 }
                 if (!err) {
-                    Session.set('materialesXcurso', res);
+                    Session.set('GetDecodeArchivos', res);
                 }
-            });
-            console.log(Session.get('materialesXcurso'))
-            return Session.get('materialesXcurso');
+        });
+    });
 
+    Template.ver_curso.helpers({
+        VerMaterialCurso: () => {
+            console.log(Session.get('GetDecodeArchivos'))
+            return Session.get('GetDecodeArchivos');
         },
         ExisteMaterial:(archivos) =>{
             console.log(archivos)
@@ -113,47 +114,7 @@ if (Meteor.isClient) {
             }
         },
         archivoCurso: (data) => { 
-            archivo = data.buffer;
-            
-            var r = new TextDecoder("utf-8").decode(data.buffer); 
-
-            //var r = new Uint8Array(atob(archivo).split("").map(function(c) {
-          //  return c.charCodeAt(0); }));
-            //var base64 = bufferToBase64(data.buffer)
-            //var base64data = new buffer(data.buffer).toString('base64');
-            
-            /*Meteor.call("DecodeArchivos",data.buffer, function(err, res) {
-                if (err) {
-                    console.log('Error: ' + err);
-                }
-                if (!err) {
-                    
-                    Session.set('DecodeArchivos', res);
-                    
-                }
-            });
-            console.log(Session.get('DecodeArchivos'))*/
-           //console.log(r)
-           //return r
-            //return Session.get('DecodeArchivos'); 
-
-        }
-    })
-
-    Template.ver_material_curso.helpers({
-        VerMaterialCurso: () => {
-            var appId = FlowRouter.getParam("sigla");
-            Meteor.call("materialesXcurso",appId,{}, function(err, res) {
-                if (err) {
-                    console.log('Error: ' + err);
-                }
-                if (!err) {
-                    Session.set('MaterialesXcursos', res);
-                }
-            });
-            console.log(Session.get('MaterialesXcursos'))
-            return Session.get('MaterialesXcursos');
-
+            console.log("archivoCurso")
         }
     })
 }

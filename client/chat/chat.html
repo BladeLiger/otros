@@ -1,0 +1,54 @@
+<template name='chat2'>
+    <form class="chat-form">
+        <textarea name="message"></textarea>
+        <input type="submit" value="submit message">
+    </form>
+
+    {{#each messages}}
+        <p>{{username}}: {{text}}</p>
+    {{/each}}
+</template>
+
+<template name="chat">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title">Chat</h4>
+               <p class="category">Comunicate con todos por este medio</p>
+            </div>
+            <div class="card-content">
+               <form class="chat-form">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label>Enviar Mensaje</label>
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label"></label>
+                              <textarea name="message" class="form-control" rows="5"></textarea>
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">Enviar Mensaje</button>
+                  <div class="clearfix"></div>
+               </form>
+            </div>
+         </div>
+      </div>
+    <div class="col-md-8">
+         <div class="card" >
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title">Chat General</h4>
+               <p class="category"></p>
+            </div>
+            <div class="card-content" style="height: 700px;overflow-y: auto">
+                   {{#each messages}}
+                        <p>{{username}}: {{text}}</p>
+                    {{/each}}
+            </div>
+         </div>
+      </div>
+   </div>
+</template>

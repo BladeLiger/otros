@@ -3,10 +3,22 @@ import '../../imports/templates/main_home.html';
 //var myLogoutFunc = function(){
 //    FlowRouter.go('/main')
 //}
+Meteor.subscribe('usuario')
 
-Template.main_principal.helpers({
+/*Template.main_principal.helpers({
+
+    username: function() {
+        var u = Meteor.user().profile.Username;
+        //var user = Meteor.users.findOne()
+        //console.log(u)
+        return
+        //return Meteor.user().profile.first_name;
+    }
+});*/
+
+Template.user.helpers({
   firstName: function() {
-    return Meteor.user().profile.firstName;
+    return Meteor.user().profile.Username;
   }
 });
 
@@ -32,11 +44,18 @@ AccountsTemplates.configure({
  //   onLogoutHook:myLogoutFunc,
 });
 
+
+
 AccountsTemplates.addFields([
     {
     _id:'Carrera',
     type:'text',
     displayName:'Carrera',
+    required: true,
+    },{
+    _id:'Username',
+    type:'text',
+    displayName:'username',
     required: true,
     },{
     _id:'Apellidos',
@@ -71,3 +90,7 @@ AccountsTemplates.addFields([
         ]
     }
 ]);
+
+/*Accounts.ui.config({
+    passwordSignupFields:'USERNAME_AND_EMAIL'
+})*/
