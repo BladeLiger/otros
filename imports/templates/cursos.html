@@ -1,193 +1,200 @@
 <template name="cursosDB">
-	<div class="row">
-	 {{#each Fullcursos}}
-        	<div class="col-md-4">
-				<div class="card">
-					<div class="card-header card-chart" data-background-color="green">
-						<img src="images/curso.jpg">
-					</div>
-					<div class="card-content">
-						<h4 class="title">{{nombre}}</h4>
-						<p class="category">{{sigla}}</p>
-					</div>
-					<div class="card-footer">
-						<div class="stats">
-							<i class="material-icons">access_time</i> {{fecha}}
-						</div>
-						<center>
-							<a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
-							</center>
-					</div>
-				</div>
-			</div>
+   <div class="row">
+      {{#each Fullcursos}}
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-header card-chart" data-background-color="green">
+               <img src="images/curso.jpg">
+            </div>
+            <div class="card-content">
+               <h4 class="title">{{nombre}}</h4>
+               <p class="category">{{sigla}}</p>
+            </div>
+            <div class="card-footer">
+               <div class="stats">
+                  <i class="material-icons">access_time</i> {{fecha}}
+               </div>
+               <center>
+                  <a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
+               </center>
+            </div>
+         </div>
+      </div>
       {{/each}}
-	  </div>
+   </div>
 </template>
-
 <template name="ver_curso">
-	<div class="card">
-	                    <div class="card-header" data-background-color="purple">
-							{{#with Vercurso}}
-	                        <h4 class="title crear">{{nombre}}</h4>
-	                        <p class="category">
-								{{sigla}}
-								<!--<a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>-->
-							</p>
-							{{/with}}
-							<form class="navbar-form navbar-right" role="search">
-                        <div class="form-group is-empty">
-                           <input type="text" class="form-control" placeholder="Escribe tu Pregunta">
-                           <span class="material-input"></span>
-                        <span class="material-input"></span></div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                           <i class="material-icons">search</i>
-                           <div class="ripple-container"></div>
-                        </button>
-                     </form>
-	                    </div>
-	                    <div class="card-content">
-	                        <div class="places-buttons">
-	                            <div class="row">
-	                                <div class="col-md-6">
-	                                    <h5>Ordenar Por:
-	                                        <p class="category">Seleccione el modo de ordenamiento</p>
-	                                    </h5>
-	                                </div>
-	                            </div>
-	                            <div class="row">
-									<div class="col-md-12">
-										<div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','left')">Prioridad</button>
-		                                </div>
-		                                <div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','center')">Nuevos</button>
-		                                </div>
-		                                <div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">Mejores</button>
-		                                </div>
-										<div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">No Resueltos</button>
-		                                </div>
-										{{#if isInRole 'admin,facilitador'}}
-										<div class="col-md-2">
-		                                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">Agregar Material</button>
-		                                </div>
-										{{/if}}
-									</div>
-	                            </div>
-								<div class="row">
-										<div class="col-md-12">
-											<div class="row">
-												<div class="col-md-6">
-													<h2>Materiales Del curso</h2>
-												</div>
-											</div>
-											<div class="row">
-											{{#each VerMaterialCurso}} 
-											        	<div class="col-md-3">
-															<div class="card">
-																<div class="card-header card-chart" data-background-color="green">
-																	<img src="data:image/jpeg;base64,{{this}}">
-																</div>
-																<div class="card-content">
-																	<h4 class="title">material1</h4>
-																	<p class="category">s</p>
-																</div>
-																<div class="card-footer">
-																	<center>
-																		<a href="/ver-material/{{sigla}}" class="btn btn-primary">Descargar</a>
-																	</center>
-																</div>
-															</div>
-														</div>
-											{{/each}}
-											</div>
-										</div>
-								</div>
-	                        </div>
-	                    </div>
-	                </div>
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Crear Material para este Curso</h4>
+   <div class="card">
+      <div class="card-header" data-background-color="purple">
+         {{#with Vercurso}}
+         <h4 class="title crear">{{nombre}}</h4>
+         <p class="category">
+            {{sigla}}
+            <!--<a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>-->
+         </p>
+         {{/with}}
+         <form class="navbar-form navbar-right" role="search">
+            <div class="form-group is-empty">
+               <input type="text" class="form-control" placeholder="Escribe tu Pregunta">
+               <span class="material-input"></span>
+               <span class="material-input"></span>
+            </div>
+            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+               <i class="material-icons">search</i>
+               <div class="ripple-container"></div>
+            </button>
+         </form>
       </div>
-      <div class="modal-body">
-        <div class="card-content">
-	                                <form method="POST" >
-	                                    
-
-	                                    <div class="row">
-	                                        <div class="col-md-12">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Nombre de Material</label>
-													<input type="text" name="nombreMaterial" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
-
-										<div class="row">
-	                                        <div class="col-md-12">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Descripcion de  Material</label>
-													<input type="text" name="descripcionMaterial" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
-
-										<div class="row">
-	                                        <div class="col-md-12">
-												<div class="">
-													<label class="control-label">Subir Material</label>
-													<input name="archivosMaterial" class="form-control archivos" type="file" accept="pdf,jpg,png"/>
-													{{#with Vercurso}}
-													<input type="hidden" name="sigla" value="{{sigla}}"/>
-													{{/with}}
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
-
-	                                    <button type="submit" class="btn btn-primary pull-right">Crear </button>
-									 
-	                                    <div class="clearfix"></div>
-	                                </form>
-	                            </div>
+      <div class="card-content">
+         <div class="places-buttons">
+            <div class="row">
+               <div class="col-md-6">
+                  <h5>
+                     Ordenar Por:
+                     <p class="category">Seleccione el modo de ordenamiento</p>
+                  </h5>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="col-md-2">
+                     <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','left')">Prioridad</button>
+                  </div>
+                  <div class="col-md-2">
+                     <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','center')">Nuevos</button>
+                  </div>
+                  <div class="col-md-2">
+                     <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">Mejores</button>
+                  </div>
+                  <div class="col-md-2">
+                     <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">No Resueltos</button>
+                  </div>
+                  {{#if isInRole 'admin,facilitador'}}
+                  <div class="col-md-2">
+                     <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">Agregar Material</button>
+                  </div>
+                  {{/if}}
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <h2>Materiales Del curso</h2>
+                     </div>
+                  </div>
+                  <div class="row">
+                     {{#each VerMaterialCurso}} 
+                     <div class="col-md-3">
+                        <div class="card">
+                           <div class="card-header card-chart" data-background-color="green">
+                              <img src="data:image/jpeg;base64,{{this}}">
+                           </div>
+                           <div class="card-content">
+                              <h4 class="title">material1</h4>
+                              <p class="category">s</p>
+                           </div>
+                           <div class="card-footer">
+                              <center>
+                                 <a href="/ver-material/{{sigla}}" class="btn btn-primary">Descargar</a>
+                              </center>
+                           </div>
+                        </div>
+                     </div>
+                     {{/each}}
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-      <!--<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>-->
-    </div>
+   </div>
+   <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Crear Material para este Curso</h4>
+            </div>
+            <div class="modal-body">
+               <div class="card-content">
+                  <form method="POST" >
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Nombre de Material</label>
+                              <input type="text" name="nombreMaterial" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Descripcion de  Material</label>
+                              <input type="text" name="descripcionMaterial" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="">
+                              <label class="control-label">Subir Material</label>
+                              <input name="archivosMaterial" class="form-control archivos" type="file" accept="pdf,jpg,png"/>
+                              {{#with Vercurso}}
+                              <input type="hidden" name="sigla" value="{{sigla}}"/>
+                              {{/with}}
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary pull-right">Crear </button>
+                     <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+            <!--<div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>-->
 
-  </div>
-</div>
-</template>
-
-<template name="ver_material_curso">
-	<div class="row">
-        	<div class="col-md-4">
-				<div class="card">
-					<div class="card-header card-chart" data-background-color="green">
-						<img src="images/curso.jpg">
-					</div>
-					<div class="card-content">
-						<h4 class="title">asd</h4>
-						<p class="category">asd</p>
-					</div>
-					<div class="card-footer">
-						<div class="stats">
-							<i class="material-icons">access_time</i> 
-						</div>
-						<center>
-							<a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
-							</center>
-					</div>
-				</div>
+			<div class="fileupload fileupload-new" data-provides="fileupload">
+			<span class="btn btn-file">
+			<span class="fileupload-new">SSSS</span>
+			<span class="fileupload-exists">Andere</span>
+			<input name="xxx" class="file-upload-input" type="file"/>
+			</span>
+			<span class="fileupload-preview">
+			</span>
+			<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 			</div>
 
-	  </div>
+
+
+         </div>
+      </div>
+   </div>
+</template>
+<template name="ver_material_curso">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-header card-chart" data-background-color="green">
+               <img src="images/curso.jpg">
+            </div>
+            <div class="card-content">
+               <h4 class="title">asd</h4>
+               <p class="category">asd</p>
+            </div>
+            <div class="card-footer">
+               <div class="stats">
+                  <i class="material-icons">access_time</i> 
+               </div>
+               <center>
+                  <a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
+               </center>
+            </div>
+         </div>
+      </div>
+   </div>
 </template>

@@ -37,3 +37,5 @@ service-configuration
 facebook-config-ui
 meteorhacks:aggregate
 session
+cfs:standard-packages
+cfs:filesystem

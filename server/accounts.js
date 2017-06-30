@@ -8,7 +8,7 @@ AccountsTemplates.configure({
    //forbidClientAccountCreation: true,
 });
 
-Meteor.publish('usuario',function(){
+/*Meteor.publish('usuario',function(){
     var user = Meteor.users.findOne(this.userId)
     return user
-})
+})*/

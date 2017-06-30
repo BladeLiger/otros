@@ -2,6 +2,7 @@
 import { Template } from 'meteor/templating';
 import { crs } from '../database/models.js';
 import {ars} from '../database/models.js';
+import {fls} from '../database/models.js';
 import '../templates/cursos.html';
 
 
@@ -84,7 +85,20 @@ if (Meteor.isClient) {
         }
 
         reader.readAsArrayBuffer(file); //read the file as arraybuffer
-        }*/
+    }*/
+    
+   
+        'change .file-upload-input': function(event, template) {
+            var files = event.target.files;
+            console.log("entro")
+            console.log(files)
+            for (var i = 0, ln = files.length; i < ln; i++) {
+            fls.insert(files[i], function (err, fileObj) {
+               // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+               console.log("nose que entra aqui")
+                });
+            }
+        }
 
     })
 
