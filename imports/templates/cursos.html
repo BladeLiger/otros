@@ -68,10 +68,11 @@
 										<div class="col-md-2">
 		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">No Resueltos</button>
 		                                </div>
-
+										{{#if isInRole 'admin,facilitador'}}
 										<div class="col-md-2">
 		                                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">Agregar Material</button>
 		                                </div>
+										{{/if}}
 									</div>
 	                            </div>
 								<div class="row">
@@ -145,7 +146,7 @@
 													<label class="control-label">Subir Material</label>
 													<input name="archivosMaterial" class="form-control archivos" type="file" accept="pdf,jpg,png"/>
 													{{#with Vercurso}}
-													<input type="text" name="sigla" value="{{sigla}}"/>
+													<input type="hidden" name="sigla" value="{{sigla}}"/>
 													{{/with}}
 												<span class="material-input"></span></div>
 	                                        </div>
