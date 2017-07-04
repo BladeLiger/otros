@@ -241,3 +241,12 @@ fls.allow({
 Meteor.publish('crs', function() {
   return crs.find();
 });
+
+Meteor.publish('files', function() {
+  return fls.find();
+});
+
+Meteor.publish('archivos', function() {
+  //console.log(ars.find().fetch())
+  return ars.find();
+})

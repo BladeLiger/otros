@@ -1,7 +1,9 @@
 import { msg } from '../../imports/database/models.js';
+import { fls } from '../../imports/database/models.js';
 
 if(Meteor.isClient){
     Meteor.subscribe('messages',5)
+    Meteor.subscribe('files')
     Template.chat.helpers({
 
         messages:function(){

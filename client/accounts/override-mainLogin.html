@@ -1,6 +1,7 @@
 <template name="override-atPwdFormBtn">
-  <div class="row">
-    <div class="col-xs-8">
+  <div class="card-header" style="background-color:white;display: table;margin: 0 auto; width:100%; box-shadow: initial;" >
+      <div class="row">
+    <div class="col-md-12">
       <div class="checkbox icheck">
         <label>
           <input type="checkbox"> Recordar contraseña
@@ -8,10 +9,11 @@
       </div>
     </div>
     <!-- /.col -->
-    <div class="col-xs-4">
+    <div class="col-md-12">
       <button type="submit" class="at-btn  btn btn-primary {{submitDisabled}} btn-block btn-flat" id="at-btn">Iniciar</button>
     </div>
     <!-- /.col -->
+  </div>
   </div>
 </template>
 
@@ -25,13 +27,13 @@
 <template name="override-atTextInput">
     <div class="card-content">
         <div class="row">
-              <div class="col-md-8  at-input form-group label-floating has-feedback {{#if isValidating}}validating{{/if}} {{#if hasError}}has-error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+              <div class="col-md-12 at-input form-group label-floating has-feedback {{#if isValidating}}validating{{/if}} {{#if hasError}}has-error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
                 {{#if showLabels}}
-                <label class=" col-md-8 control-label" for="at-field-{{_id}}">
+                <label class="control-label" for="at-field-{{_id}}">
                     {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
                 </label>
                 {{/if}}
-                <input type="{{type}}" id="at-field-{{_id}}" class=" col-md-8 form-control" name="at-field-{{_id}}" autocapitalize="none" autocorrect="off">
+                <input type="{{type}}" id="at-field-{{_id}}" class=" form-control" name="at-field-{{_id}}" autocapitalize="none" autocorrect="off">
                 {{#if hasIcon}}
                     <span class="{{iconClass}}"></span>
                 {{/if}}
@@ -44,7 +46,48 @@
 </template>
 
 <template name="override-atSignupLink">
-  <div class="at-signup-link">
-    nuevo usuario<a href="/crear_usuarios"> registrate</a>
+  <div class="" style="background-color:white;display: table;margin: 0 auto; width:100%; box-shadow: initial;" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="at-signup-link" style="text-align:center">
+              <h4>
+              <a href="{{signUpLink}}" id="at-signUp" class="at-link at-signup {{disabled}}">Registrarse</a>
+              </h4>
+            </div>
+        </div>
+    </div>
+  </div>
+</template>
+
+<template name="override-atSocial">
+    <div class="" style="background-color:white;display: table;margin: 0 auto; width:100%; box-shadow: initial; text-align:center" >
+    <div class="row">
+        <div class="col-md-12">
+  <button class="at-social-btn btn {{disabled}}" id="at-{{name}}" name="{{name}}">
+    <i class="{{iconClass}}"></i> {{buttonText}}
+  </button>
+        </div>
+        </div>
+        </div>
+</template>
+
+<template name="override-atSep">
+  <div class="at-sep">
+    <strong></strong>
+  </div>
+</template>
+
+
+<template name="override-atSigninLink">
+  <div class="" style="background-color:white;display: table;margin: 0 auto; width:100%; box-shadow: initial;" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="at-signup-link" style="text-align:center">
+              <h4>
+                <a href="{{signInLink}}" id="at-signIn" class="at-link at-signin {{disabled}}">Volver para Iniciar Sesion</a>
+              </h4>
+            </div>
+        </div>
+    </div>
   </div>
 </template>

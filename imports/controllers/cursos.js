@@ -8,7 +8,8 @@ import '../templates/cursos.html';
 
 
 if (Meteor.isClient) {
-
+    Meteor.subscribe('files')
+    Meteor.subscribe('archivos')
     Meteor.call("fullcursos", function(err, res) {
         if (err) {
             console.log('Error: ' + err);
@@ -89,14 +90,22 @@ if (Meteor.isClient) {
     
    
         'change .file-upload-input': function(event, template) {
+            var appId = FlowRouter.getParam("sigla");
             var files = event.target.files;
             console.log("entro")
             console.log(files)
             for (var i = 0, ln = files.length; i < ln; i++) {
-            fls.insert(files[i], function (err, fileObj) {
+            var fileObj = fls.insert(files[i]);
+            /*fls.insert(files[i], function (err, fileObj) {
                // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-               console.log("nose que entra aqui")
-                });
+               console.log(files[i])
+               console.log(fileObj)
+                });*/
+            ars.insert({
+                name: appId,
+                file:fileObj,
+            });
+            
             }
         }
 
@@ -114,10 +123,30 @@ if (Meteor.isClient) {
         });
     });
 
+    
+
     Template.ver_curso.helpers({
         VerMaterialCurso: () => {
             console.log(Session.get('GetDecodeArchivos'))
             return Session.get('GetDecodeArchivos');
+        },
+        filesCurso:()=>{
+            var appId = FlowRouter.getParam("sigla");
+            var FilesRecord = [];
+            var files =  ars.find({name:appId},{
+                sort:{_id:1}
+            });
+            files = files.fetch()
+            console.log(files) 
+            console.log(files[0])
+            for(var i=0; i< files.length; i++){
+                FilesRecord.push(files[i].file.getFileRecord())
+            }
+           // var files = ars.findOne({name:"curso-1"})
+            //files = files.fetch()
+            console.log(FilesRecord)
+            return FilesRecord;
+            //return files.file.getFileRecord()
         },
         ExisteMaterial:(archivos) =>{
             console.log(archivos)

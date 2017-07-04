@@ -1,94 +1,271 @@
 <template name="CrearUsuarios">
-    <div class="row">
-        <div class="col-md-12">
-	                        <div class="card">
-	                            <div class="card-header" data-background-color="purple">
-	                                <h4 class="title ">Crear Un nuevo Usuario</h4>
-									<p class="category">Tenga cuidado con los campos de un nuevo usuario</p>
-	                            </div>
-	                            <div class="card-content">
-	                                <!--<form>
-	                                    <div class="row">
-	                                        <div class="col-md-5">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Nombres Completos</label>
-													<input type="text" name="nombres" id="nombres" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                        <div class="col-md-3">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Apellido Paterno</label>
-													<input type="text" name="apellidoP" id="apellidoP" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                        <div class="col-md-4">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Apellido Materno</label>
-													<input type="text" name="apellidoM" id="apellidoM" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title ">Crear Un nuevo Usuario</h4>
+               <p class="category">Tenga cuidado con los campos de un nuevo usuario</p>
+            </div>
+            <div class="card-content">
+               <form>
+                  <div class="row">
+                     <div class="col-md-5">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Nombres Completos</label>
+                           <input type="text" name="nombres" id="nombres" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Apellido Paterno</label>
+                           <input type="text" name="apellidoP" id="apellidoP" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Apellido Materno</label>
+                           <input type="text" name="apellidoM" id="apellidoM" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Correo Electronico</label>
+                           <input type="email" name="email"  id="email" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Numero de telefono</label>
+                           <input type="text" name="cel" id="cel" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Direccion</label>
+                           <input type="text" name="direccion" id="direccion" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Password</label>
+                           <input type="password" name="password" id="password" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">username</label>
+                           <input type="text" name="username" id="username" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-empty">
+                           <label class="control-label">Carrera</label>
+                           <input type="text" name="carrera" id="carrera" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-4">
+                        <label class="control-label" style="font-size:15px">Roles de Usuario</label>
+                        <table>
+                           <tr>
+                              <td>
+                                 <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox" class="checksbox" name="rol[]" value="admin"><span class="checkbox-material"><span class="check"></span></span>
+                                    </label>
+                                 </div>
+                              </td>
+                              <td>Administrador</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox" class="checksbox" name="rol[]"  value="facilitador"><span class="checkbox-material"><span class="check"></span></span>
+                                    </label>
+                                 </div>
+                              </td>
+                              <td>Facilitador</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox" class="checksbox" name="rol[]" value="estudiante"><span class="checkbox-material"><span class="check"></span></span>
+                                    </label>
+                                 </div>
+                              </td>
+                              <td>Estudiante</td>
+                           </tr>
+                        </table>
+                        <!--<div class="form-group label-floating is-empty">
+                           <label class="control-label"></label>
+                           <select name="rol" class="form-control">
+                                                                      <option value="admin">Administrador</option>
+                                                                      <option value="facilitador">Facilitador</option>
+                                                                      <option value="estudiante">Estudiante</option>
+                           </select>
+                           <span class="material-input"></span>
+                           </div>-->
+                     </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">Crear Nuevo Usuario</button>
+                  <div class="clearfix"></div>
+               </form>
+               <!--{{>atForm state='signUp'}}-->
+            </div>
+         </div>
+      </div>
+   </div>
+</template>
+<template name="full_usuarios">
+   {{#if currentUser}}
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <div class="card-header" data-background-color="white" style="background-color: #ffffff;">
+               <div class="container-fluid">
+                  <div class="navbar-header" >
+                     <a class="navbar-brand" style="color: #000;"  href="#">
+                        Usuarios
+                        <div class="ripple-container"></div>
+                     </a>
+                  </div>
+                  <div class="collapse navbar-collapse" >
+                     <form class="navbar-form navbar-right" role="search" style="margin:-20px">
+                        <div class="form-group is-empty">
+                           {{> EasySearch.Input index=index attributes = inputAttributes}}
+                           <span class="material-input"></span>
+                           <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                           <i class="material-icons">search</i>
+                           <div class="ripple-container"></div>
+                        </button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="card-content table-responsive">
+               <table class="table">
+                  <thead class="text-primary">
+                     <tr>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Nombre y Apellidos</th>
+                        <th>Estado</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {{#EasySearch.IfSearching index=index}}
+                     <td colspan="4">
+                        Buscando...
+                     </td>
+                     {{/EasySearch.IfSearching}}
+                     {{#EasySearch.IfNoResults index=index}}
+                     <td colspan="4" align="center">
+                        <h3>Ningun Usuario Encontrado</h3>
+                     </td>
+                     {{else}}
+                     {{/EasySearch.IfNoResults}}
+                     {{#EasySearch.Each index=index}}
+                     {{> User}}
+                     {{/EasySearch.Each}}
+					 <tr>
+						<td colspan="4">
+							
+						</td>
+					</tr>
+                     <tr>
+                        {{#EasySearch.IfInputEmpty index=index}}
+                        <td colspan="4" class="alert alert-warning">
+                           Puede realizar busquedas de Usuario por Nombres, Apellidos, Username
+                        </td>
+                        {{else}}
+                        <td colspan="4">
+                           {{resultsCount}} Resultados Encontrados.
+                        </td>
+                        {{/EasySearch.IfInputEmpty}}
+                     </tr>
+                     <tr>
+                        <td colspan="4" align="right">
+                           {{>EasySearch.Pagination index=index maxPages=10}}
+						   	
+                           {{! > EasySearch.LoadMore index=index}}
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+   {{/if}}
+   
+   <!--<div id="search-wrap">
+      {{#if showMore}}
+      	{{> EasySearch.Input name="mini-index" index=index attributes=inputAttributes}}
+      	<ul>
+      		{{#EasySearch.Each name="mini-index" index=index}}
+      			<li>{{profile.Username}}</li>
+      		{{/EasySearch.Each}}
+      	</ul>
+      {{/if}}
+      </div>-->
+</template>
 
-	                                    <div class="row">
-	                                        <div class="col-md-6">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Correo Electronico</label>
-													<input type="email" name="email"  id="email" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                        <div class="col-md-6">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Numero de telefono</label>
-													<input type="text" name="cel" id="cel" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
+<template name="User">
+   <tr>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{emails.[0].address}}</span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{profile.Username}}</span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{profile.Nombres}} {{profile.ApellidoP}} {{profile.ApellidoM}}</span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{profile.estado}}</span></td>
+   </tr>
+   <tr id="collapseme-{{@index}}" class="collapse out">
+      {{#if selected}}
+      <td colspan="2">
+         <div>
+            <span> El usuario <b>{{emails.[0].address}}</b> en este momento esta: <b>{{profile.estado}}</b> que desea hacer? </span>
+         </div>
+      </td>
+	  <td>
+		  <button class="btn btn-warning editUser" > Editar </button>
+	  </td>
+	  <td>
+		  <button class="btn btn-danger banUser">  Bannear </button>
+	  </td>
+      {{/if}}
+   </tr>
+</template>
 
-	                                    <div class="row">
-	                                        <div class="col-md-6">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Direccion</label>
-													<input type="text" name="direccion" id="direccion" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-                                            <div class="col-md-6">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Password</label>
-													<input type="text" name="password" id="password" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
-
-	                                    <div class="row">
-	                                        <div class="col-md-4">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Nombre de usuario</label>
-													<input type="text" name="username" id="username" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                        <div class="col-md-4">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label">Carrera</label>
-													<input type="text" name="carrera" id="carrera" class="form-control">
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                        <div class="col-md-4">
-												<div class="form-group label-floating is-empty">
-													<label class="control-label"></label>
-													<select name="rol" class="form-control">
-                                                        <option value="admin">Administrador</option>
-                                                        <option value="facilitador">Facilitador</option>
-                                                        <option value="estudiante">Estudiante</option>
-													</select>
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
-	                                    <button type="submit" class="btn btn-primary pull-right">Crear Nuevo Usuario</button>
-	                                    <div class="clearfix"></div>
-	                                </form>-->
-                                    {{>atForm state='signUp'}}
-	                            </div>
-	                        </div>
-	                    </div>
-    </div>
+<template name="Override-EasySearch.Pagination">
+    {{#if moreDocuments}}
+        {{#if customRenderPagination}}
+            {{> Template.dynamic template=customRenderPagination}}
+        {{else}}
+            <ul class="pagination">
+                {{#each page}}
+                    <li class="page btn {{pageClasses this}}">
+                        {{content}}
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    {{/if}}
 </template>
