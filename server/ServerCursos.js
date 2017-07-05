@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/database/models.js';
 import {crs} from '../imports/database/models.js';
+import {crsMaster} from '../imports/database/models.js';
 import {ars} from '../imports/database/models.js';
 import {fls} from '../imports/database/models.js';
 
@@ -250,3 +251,8 @@ Meteor.publish('archivos', function() {
   //console.log(ars.find().fetch())
   return ars.find();
 })
+
+Meteor.publish('cursosMaster', function() {
+  return crsMaster.find();
+});
+

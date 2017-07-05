@@ -1,8 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 import { Index, MinimongoEngine } from 'meteor/easy:search'
-export const crs = new Mongo.Collection('cursos');
+export const crsMaster = new Mongo.Collection('cursos');
+export const crs = new Mongo.Collection('clases');//Materiales
 export const ars = new Mongo.Collection('archivos');
 export const msg = new Mongo.Collection('messages')
+export const msgClases = new Mongo.Collection('msgClases')
 
 /*export const fls = new FS.Collection("files", {
                 stores: [new FS.Store.FileSystem("files", {path: "public/images  "})]

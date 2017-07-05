@@ -23,16 +23,17 @@
       {{/each}}
    </div>
 </template>
-<template name="ver_curso">
+<template name="ver_curso_clase_archivos">
    <div class="card">
       <div class="card-header" data-background-color="purple">
-         {{#with Vercurso}}
-         <h4 class="title crear">{{nombre}}</h4>
+         {{#with Verclase}}
+         <h4 class="title crear">{{nombreClase}} -- {{sigla}}</h4>
          <p class="category">
-            {{sigla}}
+            {{descripcionClase}}
             <!--<a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>-->
          </p>
-         {{/with}}
+         {{/with}} 
+         
       </div>
       <div class="card-content">
          <div class="places-buttons">
@@ -40,20 +41,14 @@
                <div class="col-md-12">
                   <div class="row">
                      <div class="col-md-6">
-                        <h2>Materiales Del curso</h2>
+                        {{#each VideoClase}}
+                        <video width="100%" controls>
+                            <source src="{{this.url}}" type="video/mp4">
+                        </video>
+                        {{/each}}
                      </div>
                      <div class="col-md-6">
-                        <form class="navbar-form navbar-right" role="search">
-                           <div class="form-group is-empty">
-                              <input type="text" class="form-control" placeholder="Escribe tu Pregunta">
-                              <span class="material-input"></span>
-                              <span class="material-input"></span>
-                           </div>
-                           <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                              <i class="material-icons">search</i>
-                              <div class="ripple-container"></div>
-                           </button>
-                        </form>
+                        {{>chatclaseCurso}}
                      </div>
                   </div>
                   <div class="row">
@@ -110,19 +105,20 @@
                                  </div>
                               </div>
                            </div>
+
                            <div class="card-content">
                               <div class="tab-content">
                                  <div class="tab-pane active" id="profile">
                                     <table class="table">
                                        <tbody>
-                                          {{#each filesCurso}}
+                                          {{#each filesClase}}
                                           <tr>
                                              <td align="center">
                                                 <i class="fa fa-file fa-2x" aria-hidden="true"></i>
                                              </td>
                                              <td width="50%">{{this.name}}</td>
                                              <td>
-                                                <a href="{{this.url}}" target="_blank"  class="btn btn-primary">
+                                                <a href="{{this.url}}" class="btn btn-primary" download> 
                                                 <span>Descargar</span>
                                                 <i class="fa fa-download" aria-hidden="true"></i>
                                                 </a>
@@ -160,16 +156,16 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Crear Material para este Curso</h4>
+               <h4 class="modal-title">Subir Archivos para esta clase</h4>
             </div>
             <div class="modal-body">
                <div class="card-content">
-                  <form method="POST" >
+                  <form method="POST" id="formArchivos"> 
                      <div class="row">
                         <div class="col-md-12">
                            <div class="form-group label-floating is-empty">
-                              <label class="control-label">Nombre de Material</label>
-                              <input type="text" name="nombreMaterial" class="form-control">
+                              <label class="control-label">Nombre del archivo</label>
+                              <input type="text" name="nombreArchivo" class="form-control">
                               <span class="material-input"></span>
                            </div>
                         </div>
@@ -177,8 +173,8 @@
                      <div class="row">
                         <div class="col-md-12">
                            <div class="form-group label-floating is-empty">
-                              <label class="control-label">Descripcion de  Material</label>
-                              <input type="text" name="descripcionMaterial" class="form-control">
+                              <label class="control-label">Descripcion del archivo</label>
+                              <input type="text" name="descripcionArchivo" class="form-control">
                               <span class="material-input"></span>
                            </div>
                         </div>
@@ -187,9 +183,9 @@
                         <div class="col-md-12">
                            <div class="">
                               <label class="control-label">Subir Material</label>
-                              <input name="archivosMaterial" class="form-control archivos" type="file" accept="pdf,jpg,png"/>
-                              {{#with Vercurso}}
-                              <input type="hidden" name="sigla" value="{{sigla}}"/>
+                              <input name="archivo" class="file-upload-input" type="file"/>
+                              {{#with Verclase}}
+                              <input type="hidden" name="rca" value="{{_id}}"/>
                               {{/with}}
                               <span class="material-input"></span>
                            </div>
@@ -200,10 +196,8 @@
                   </form>
                </div>
             </div>
-            <!--<div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               </div>-->
-            <div class="fileupload fileupload-new" data-provides="fileupload">
+
+            <!--<div class="fileupload fileupload-new" data-provides="fileupload">
                <span class="btn btn-file">
                <span class="fileupload-new">SSSS</span>
                <span class="fileupload-exists">Andere</span>
@@ -212,11 +206,54 @@
                <span class="fileupload-preview">
                </span>
                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
-            </div>
+            </div>-->
          </div>
       </div>
    </div>
 </template>
+
+<template name="chatclaseCurso">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" data-background-color="purple">
+                <h4 class="title">Chat de la clase</h4>
+                <p class="category"></p>
+                </div>
+                <div class="card-content" style="height: 300px; overflow-y: auto">
+                    
+                    {{#each messagesClases}}
+                        <p>{{username}}: {{text}}</p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card-content">
+            <form class="chat-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label>Enviar Mensaje</label>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label"></label>
+                            <textarea name="message" class="form-control"></textarea>
+                            <span class="material-input"></span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                {{#with Verclase}}
+                    <input type="hidden" name="rca" value="{{_id}}"/>
+                {{/with}}
+                <button type="submit" class="btn btn-primary pull-right">Enviar Mensaje</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</template>
+<!--
 <template name="ver_material_curso">
    <div class="row">
       <div class="col-md-4">
@@ -238,5 +275,207 @@
             </div>
          </div>
       </div>
+   </div>
+</template>
+-->
+
+<template name="cursosDBMaster">
+   <div class="row">
+      {{#each FullcursosUser}}
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-header card-chart" data-background-color="green">
+               <img src="images/curso.jpg">
+            </div>
+            <div class="card-content">
+               <h4 class="title">{{nombre}} - {{sigla}}</h4>
+               <p class="category">{{descripcion}}</p>
+            </div>
+            <div class="card-footer">
+               <div class="stats">
+                  <i class="material-icons">access_time</i> {{createdAt}}
+               </div>
+               <center>
+                  <a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
+               </center>
+            </div>
+         </div>
+      </div>
+      {{/each}}
+   </div>
+</template>
+
+
+<template name="ver_cursoMaster">
+   <div class="card">
+      <div class="card-header" data-background-color="purple">
+         {{#with Vercurso}}
+         <h4 class="title crear">{{nombre}}</h4>
+         <p class="category">
+            {{sigla}}
+            <!--<a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>-->
+         </p>
+         {{/with}}
+      </div>
+      <div class="card-content">
+         <div class="places-buttons">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <h3>Clases o Materiales Del curso</h3>
+                     </div>
+                     {{#if isInRole 'admin,facilitador'}}
+                     <div class="col-md-6">
+                        <button class="btn-warning btn" data-toggle="modal" data-target="#myModal"> Agregar Nueva Clase</button>
+                     </div>
+                     {{/if}}
+                  </div>
+               </div>
+            </div>
+
+        <div class="row">
+            {{#each allClases}}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-chart" data-background-color="green">
+                    <img src="images/curso.jpg">
+                    </div>
+                    <div class="card-content">
+                    <h4 class="title">{{nombreClase}} - {{sigla}}</h4>
+                    <p class="category">{{descripcionClase}}</p>
+                    </div>
+                    <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">access_time</i> {{createdAt}}
+                    </div>
+                    <center>
+                        <a href="/ver-material/{{_id}}" class="btn btn-primary">Acceder a la clase</a>
+                    </center>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+
+         </div>
+      </div>
+   </div>
+   <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Crear Nueva Clase o Material</h4>
+            </div>
+            <div class="modal-body">
+               <div class="card-content">
+                  <form method="POST" >
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Nombre de Material o clase</label>
+                              <input type="text" name="nombreMaterial" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Descripcion de Material o clase</label>
+                              <input type="text" name="descripcionMaterial" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="">
+                              <label class="control-label">Subir Material</label>
+                              <input name="videoMaterial" class="file-upload-input" type="file"/>
+                              {{#with Vercurso}}
+                              <input type="hidden" name="sigla" value="{{sigla}}"/>
+                              <input type="hidden" name="rca" value="{{_id}}"/>
+                              {{/with}}
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary pull-right">Crear </button>
+                     <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+            <!--<div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>-->
+            <!--<div class="fileupload fileupload-new" data-provides="fileupload">
+               <span class="btn btn-file">
+               <span class="fileupload-new">SSSS</span>
+               <span class="fileupload-exists">Andere</span>
+               <input name="xxx" class="file-upload-input" type="file"/>
+               </span>
+               <span class="fileupload-preview">
+               </span>
+               <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+            </div>-->
+         </div>
+      </div>
+   </div>
+</template>
+
+
+<template name="cursosMateriales">
+   <div class="row">
+      {{#each FullcursosUser}}
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-header card-chart" data-background-color="green">
+               <img src="images/curso.jpg">
+            </div>
+            <div class="card-content">
+               <h4 class="title">{{nombre}} - {{sigla}}</h4>
+               <p class="category">{{descripcion}}</p>
+            </div>
+            <div class="card-footer">
+               <div class="stats">
+                  <i class="material-icons">access_time</i> {{createdAt}}
+               </div>
+               <center>
+                  <a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
+               </center>
+            </div>
+         </div>
+      </div>
+      {{/each}}
+   </div>
+</template>
+
+<template name="FullCursosFull">
+   <div class="row">
+      {{#each FullcursosFull}}
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-header card-chart" data-background-color="green">
+               <img src="images/curso.jpg">
+            </div>
+            <div class="card-content">
+               <h4 class="title">{{nombre}} - {{sigla}}</h4>
+               <p class="category">{{descripcion}}</p>
+            </div>
+            <div class="card-footer">
+               <div class="stats">
+                  <i class="material-icons">access_time</i> {{createdAt}}
+               </div>
+               <center>
+                  <a href="ver-curso/{{sigla}}" class="btn btn-primary">Acceder al curso</a>
+               </center>
+            </div>
+         </div>
+      </div>
+      {{/each}}
    </div>
 </template>
